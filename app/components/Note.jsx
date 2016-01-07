@@ -16,6 +16,7 @@ export default class Note extends React.Component {
     }
     return this.renderNote();
   }
+
   renderEdit = () => {
     // Deal with blur and input handlers. These map to DOM events.
     return <input type="text"
@@ -23,8 +24,13 @@ export default class Note extends React.Component {
       onBlur={this.finishEdit} onKeyPress={this.checkEnter} />;
   };
   renderNote = () => {
-    // If the user clicks on a normal note, trigger editing logic.
-    return <div onClick={this.edit}>{this.props.task}</div>;
+    const onDelete = this.props.onDelete;
+    return (
+      <div>
+      <div onClick={this.edit}>{this.props.task}</div>
+      {onDelete ? this.renderDelete() : null}
+      </div>
+    );
   };
   edit = () => {
     // Enter edit mode.
@@ -52,5 +58,10 @@ export default class Note extends React.Component {
     this.setState({
       editing: false
     });
+  };
+  renderDelete = () => {
+    return (
+      <button onClick={this.props.onDelete} className='button'>x</button>
+    );
   };
 }
