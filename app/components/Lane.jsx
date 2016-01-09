@@ -6,6 +6,8 @@ import NoteStore from '../stores/NoteStore';
 import LaneActions from '../actions/LaneActions';
 import Editable from './Editable.jsx';
 
+require('../css/lane.css');
+
 export default class Lanes extends React.Component {
   constructor(props) {
     super(props);
@@ -49,7 +51,7 @@ export default class Lanes extends React.Component {
   }
   deleteNote(laneId, noteId) {
     LaneActions.detachFromLane({laneId, noteId});
-    NoteActions.delete(id);
+    NoteActions.delete(noteId);
   }
   editName(id, name) {
     if(name) {
